@@ -22,8 +22,8 @@ npx tree-sitter-cli generate
 
 echo "Building WASM Solidity Parser..."
 npx tree-sitter-cli build-wasm
-mv tree-sitter-solidity.wasm bin/tree-sitter-solidity.wasm
-chmod +x bin/tree-sitter-solidity.wasm
+mv tree-sitter-solidity.wasm /assets/js/tree-sitter-solidity.wasm
+chmod +x assets/js/tree-sitter-solidity.wasm
 
 sleep 1
 echo "configure LANGUAGE_BASE_URL for proper resolution"

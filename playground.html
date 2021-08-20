@@ -43,7 +43,7 @@ permalink: playground
 
 {% if jekyll.environment == "development" %}
 <script>LANGUAGE_BASE_URL = "/assets/js";</script>
-<script src="/assets/js/tree-sitter.js"></script>
+<script src="assets/js/tree-sitter.js"></script>
 {% else %}
 <!-- @dev FIXME -->
 <script>LANGUAGE_BASE_URL = "https://sambacha.github.io/solidity-parser-explorer";</script>
@@ -51,4 +51,4 @@ permalink: playground
 {% endif %}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clusterize.js/0.18.0/clusterize.min.js"></script>
-<script src="{{ '/assets/js/playground.js' | relative_url }}"></script>
+<script src="{{ 'assets/js/playground.js' | relative_url }}"></script>
