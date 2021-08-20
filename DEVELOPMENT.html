@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="/assets/css/style.css?v=886bc164fdd26a652b137e071e81be1c58f5e75a" media="screen" type="text/css">
+  <title>Tree-sitter｜Development</title>
+  <link rel="icon" type="image/png" href="/assets/images/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon-16x16.png" sizes="16x16" />
+</head>
+
+<body class="sidebar-hidden">
+  <script>
+    if (localStorage.getItem('sidebar-active') === 'true') {
+      document.body.classList.remove('sidebar-hidden');
+    }
+  </script>
+
+  <div id="container">
+    <div id="sidebar">
+      <nav id="table-of-contents">
+        <a class="logo table-of-contents-section" href="https://github.com/tree-sitter/tree-sitter">
+          <img title="Tree-sitter logo, link to github repo" src="/assets/images/tree-sitter-small.png" width=200 height=200 />
+          <span class="github-repo">GitHub repository</span>
+        </a>
+
+        
+          
+            <li class="table-of-contents-section">
+              <a class="nav-link" href="/playground">
+                Playground
+              </a>
+            </li>
+          
+        
+          
+            <li class="table-of-contents-section active">
+              <a class="nav-link" href="/DEVELOPMENT.html">
+                Development
+              </a>
+
+              <div id="current-page-table-of-contents">
+                
+                <ul>
+  <li><a href="#adding-new-languages" class="nav-link">Adding New Languages</a></li>
+  <li><a href="#grep-search" class="nav-link">Grep Search</a></li>
+</ul>
+              </ul>
+            </li>
+          
+        
+      </nav>
+    </div>
+
+    <a id="sidebar-toggle-link" href="#">☰</a>
+
+    <main id="main-content">
+      <h1 id="development">Development</h1>
+
+<h3 id="adding-new-languages">Adding New Languages</h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="s2">`</span><span class="p">${</span><span class="nx">LANGUAGE_BASE_URL</span><span class="p">}</span><span class="s2">/tree-sitter-</span><span class="p">${</span><span class="nx">newLanguageName</span><span class="p">}</span><span class="s2">.wasm`</span>
+</code></pre></div></div>
+
+<h3 id="grep-search">Grep Search</h3>
+<p><code class="language-plaintext highlighter-rouge">&lt;!-- @dev FIXME --&gt;</code></p>
+
+    </main>
+  </div>
+</body>
+</html>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  crossorigin="anonymous">
+</script>
+
+<script
+  src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.bundle.min.js">
+</script>
+
+<script>
+  $('#sidebar-toggle-link').click(function(e) {
+    e.preventDefault();
+    $(document.body).toggleClass('sidebar-hidden');
+    localStorage.setItem(
+      'sidebar-active',
+      localStorage.getItem('sidebar-active') === 'true' ? 'false' : 'true'
+    );
+  });
+
+  if (document.body.scrollHeight > window.innerHeight + 500) {
+    $(document.body).scrollspy({
+      target: '#current-page-table-of-contents',
+      offset: 40
+    });
+  }
+
+  $(document).scroll(function() {
+    if ($(document).scrollLeft() > 0) {
+      localStorage.setItem('sidebar-active', 'false');
+      $(document.body).addClass('sidebar-hidden');
+    }
+  });
+
+  $('h2, h3').filter('[id]').each(function() {
+    $(this).html('<a href="#'+$(this).attr('id')+'">' + $(this).text() + '</a>');
+  });
+</script>
