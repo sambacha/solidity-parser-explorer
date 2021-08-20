@@ -1,3 +1,9 @@
+.DS_Store
+ndoe_modules
+vendor
+_site
+.bundle
+
 # Compiled class file
 *.class
 
