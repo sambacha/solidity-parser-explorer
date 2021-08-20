@@ -3,6 +3,7 @@ layout: default
 title: Playground
 permalink: playground
 ---
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'">
 
 <script src="https://cdn.jsdelivr.net/npm/codemirror@5.62.2/lib/codemirror.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/clusterize.js/0.18.0/clusterize.min.css">
@@ -42,7 +43,7 @@ permalink: playground
 <script src="https://cdn.jsdelivr.net/npm/codemirror@5.62.2/lib/codemirror.min.js"></script>
 
 {% if jekyll.environment == "development" %}
-<script>LANGUAGE_BASE_URL = "/assets/js";</script>
+<script>LANGUAGE_BASE_URL = "assets/js";</script>
 <script src="assets/js/tree-sitter.js"></script>
 {% else %}
 <!-- @dev FIXME -->

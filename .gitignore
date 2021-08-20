@@ -1,3 +1,6 @@
+output/
+build/
+public/
 .DS_Store
 ndoe_modules
 vendor
