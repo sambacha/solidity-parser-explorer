@@ -1,8 +1,8 @@
+node_modules/
 output/
 build/
 public/
 .DS_Store
-ndoe_modules
 vendor
 _site
 .bundle

@@ -4,7 +4,7 @@
   "description": "playground for teee-sitter",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "gh-pages -d output"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/sambacha/solidity-parser-explorer/issues"
   },
-  "homepage": "https://github.com/sambacha/solidity-parser-explorer#readme"
+  "homepage": "https://github.com/sambacha/solidity-parser-explorer#readme",
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
+  }
 }
