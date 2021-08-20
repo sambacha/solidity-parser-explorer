@@ -28,5 +28,6 @@ chmod +x assets/js/tree-sitter-solidity.wasm
 sleep 1
 echo "configure LANGUAGE_BASE_URL for proper resolution"
 echo $BUILD_DATE >> .build_logs
+bundle exec jekyll build -d output/
 
 exit 0
