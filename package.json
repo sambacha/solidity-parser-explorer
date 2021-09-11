@@ -1,16 +1,18 @@
 {
   "name": "solidity-parser-explorer",
-  "version": "0.0.0",
+  "version": "0.1.2",
   "description": "playground for teee-sitter",
   "main": "index.js",
   "scripts": {
+    "build": "sh build.sh ",
+    "prod": "npm run-script build && npm run-script deploy",
     "deploy": "gh-pages -d output"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sambacha/solidity-parser-explorer.git"
   },
-  "author": "sam bacha",
+  "author": "SEE CONTRIBUTORS",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/sambacha/solidity-parser-explorer/issues"
