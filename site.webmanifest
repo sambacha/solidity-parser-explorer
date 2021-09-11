@@ -1,0 +1,12 @@
+{
+  "short_name": "Solidity AST Explore",
+  "name": "Solidity Tree Sitter Parser Playground",
+  "icons": [{
+    "src": "logo.png",
+    "type": "image/png",
+    "sizes": "192x192"
+  }],
+  "start_url": "/",
+  "background_color": "#fafafa",
+  "theme_color": "#fafafa"
+}

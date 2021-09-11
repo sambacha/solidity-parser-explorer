@@ -1,138 +1,196 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    
+  <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <link rel="stylesheet" href="assets/css/style.css" media="screen" type="text/css">
-  <title>Tree-sitter Solidity Playground</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize-css@2.3.1/normalize.min.css">
+
+  <title>Tree Sitter Solidity Playground</title>
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+
+  <link rel="manifest" href="site.webmanifest">
 </head>
 
 <body>
-
-
   <div id="container">
     <main id="main-content">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.45.0/codemirror.min.css">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/clusterize.js/0.18.0/clusterize.min.css">
-<style type="text/css">
-    .CodeMirror {
-      border: 1px solid black;
-    }
-  
-    .cm-mustache {
-      color: red;
-    }
-.version {
-  font-size: 0.5em;
-}
-.credit {
-  font-style: italic;
-  margin-top: 20px;
-  text-align: center;
-}
-</style>
 
-<link rel=stylesheet href="https://codemirror.net/doc/docs.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/clusterize.js/0.18.0/clusterize.min.css">
+      <style type="text/css">
+        .content {
+          width: fit-content;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
 
-<link rel="stylesheet" href="https://codemirror.net/lib/codemirror.css">
-<script src="https://codemirror.net/lib/codemirror.js"></script>
-<script src="https://codemirror.net/addon/mode/overlay.js"></script>
-<script src="https://codemirror.net/addon/runmode/runmode.js"></script>
+        .cm {
+          width: 450px;
+          display: inline-block;
+        }
 
-<h1><a href="https://github.com/sambacha/tree-sitter-solidity">Tree-sitter Solidity</a> <span class="version">v1.0.5</span></h1>
+        .CodeMirror {
+          border: 1px solid black;
+          font-size: 13px
+        }
+      </style>
 
-<div id="playground-container" style="visibility: hidden;">
 
-<h4>Code</h4>
-<select id="language-select">
-  <option value="solidity" selected="selected">solidity</option>
-</select>
 
-<input id="logging-checkbox" type="checkbox"></input>
-<label for="logging-checkbox">Log</label>
+      <link rel="stylesheet" href="editor.css">
+      <script src="https://cdn.jsdelivr.net/npm/codemirror@5.62.3/addon/runmode/runmode.js"
+        integrity="sha256-wFVvUe0JSlvGSM2b8jj2mvOPvxzvrUXgj2/t8O9VlOY=" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/codemirror@5.62.3/addon/mode/overlay.js"
+        integrity="sha256-/sdtVfzeo4ObwYqYkjPb5vD5UBdT0RM5CbOp8n/ubnY=" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/codemirror@5.62.3/lib/codemirror.js"
+        integrity="sha256-RcWlmFozMpt3otHcBDVOQZwKWJVJbZefcL7P8RFMjIU=" crossorigin="anonymous"></script>
 
-<input id="query-checkbox" type="checkbox"></input>
-<label for="query-checkbox">Query</label>
+      <h1><a href="https://github.com/sambacha/tree-sitter-solidity">Tree-sitter Solidity</a> <span
+          class="version">2021.09.10</span></h1>
 
-<textarea id="code-input">
+      <div id="playground-container" style="visibility: hidden;">
+
+        <h4>Supported versions: 0.5.0 - 0.8.4 </h4>
+        <select id="language-select">
+          <option value="solidity" selected="selected">solidity</option>
+        </select>
+
+        <input id="logging-checkbox" type="checkbox"></input>
+        <label for="logging-checkbox">Log</label>
+
+        <input id="query-checkbox" type="checkbox"></input>
+        <label for="query-checkbox">Query</label>
+
+        <textarea id="code-input" class="editor" style="display: none;">
 </textarea>
 
-<div id="query-container" style="visibility: hidden; position: absolute;">
-  <h4>Query</h4>
-  <textarea id="query-input"></textarea>
-</div>
+        <div id="query-container" style="visibility: hidden; position: absolute;">
+          <h4>Query</h4>
+          <textarea id="query-input"></textarea>
+        </div>
 
-<h4>Tree</h4>
-<span id="update-time"></span>
-<div id="output-container-scroll">
-  <pre id="output-container" class="highlight"></pre>
-</div>
+        <h3>AST Tree Output</h3>
+        <p>Time to generate: </p><span id="update-time"></span>
+        <div id="output-container-scroll">
+          <pre id="output-container" class="highlight"></pre>
+        </div>
 
-</div>
+      </div>
 
-<div class="credit">
-  This playground was modified from <a href="https://tree-sitter.github.io/tree-sitter/playground">the official Tree-sitter Playground</a>.
-</div>
+      <div class="credit">
+        This playground was modified from <a href="https://tree-sitter.github.io/tree-sitter/playground">the official
+          Tree-sitter Playground</a>. See <a href="https://github.com/sambacha/solidity-parser-explorer">GitHub Source</a> | MIT License
+      </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.45.0/codemirror.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.45.0/codemirror.min.js"></script>
 
 
-<!-- @dev This section controls the injection into CodeMirror for parsing -->
-<script>LANGUAGE_BASE_URL = "assets/js";</script>
-<script src="assets/js/tree-sitter.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clusterize.js/0.18.0/clusterize.min.js"></script>
-<script src="assets/js/playground.js"></script>
-<script>
-((codeExample, queryExample) => {
-  const handle = setInterval(() => {
-    const $codeEditor = document.querySelector('.CodeMirror');
-    const $queryEditor = document.querySelector('#query-container .CodeMirror');
-    const $queryCheckbox = document.querySelector('#query-checkbox');
-    if ($codeEditor && $queryEditor) {
-      $codeEditor.CodeMirror.setValue(codeExample);
-      if (queryExample) {
-        $queryEditor.CodeMirror.setValue(queryExample);
-        if (!$queryCheckbox.checked) $queryCheckbox.click();
-      }
-      clearInterval(handle);
+      <!-- @dev This section controls the injection into CodeMirror for parsing -->
+      <script>
+        LANGUAGE_BASE_URL = "assets/js";
+      </script>
+      <script src="assets/js/tree-sitter.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/clusterize.js/0.18.0/clusterize.min.js"></script>
+      <script src="assets/js/playground.js"></script>
+      <script>
+        ((codeExample, queryExample) => {
+          const handle = setInterval(() => {
+            const $codeEditor = document.querySelector('.CodeMirror');
+            const $queryEditor = document.querySelector('#query-container .CodeMirror');
+            const $queryCheckbox = document.querySelector('#query-checkbox');
+            if ($codeEditor && $queryEditor) {
+              $codeEditor.CodeMirror.setValue(codeExample);
+              if (queryExample) {
+                $queryEditor.CodeMirror.setValue(queryExample);
+                if (!$queryCheckbox.checked) $queryCheckbox.click();
+              }
+
+              clearInterval(handle);
+            }
+          }, 500);
+        })(`// SPDX-License-Identifier: MIT
+// @source: OpenZeppelin/openzeppelin-contracts/contracts/utils/Strings.sol
+// @commmit 788d338c9b53d57f7229f79815573dcb91ecede1
+pragma solidity ^0.8.0;
+
+/**
+ * @dev String operations.
+ */
+library Strings {
+    bytes16 private constant _HEX_SYMBOLS = "0123456789abcdef";
+
+    /**
+     * @dev Converts a uint256 to its ASCII string decimal representation.
+     */
+    function toString(uint256 value) internal pure returns (string memory) {
+        // Inspired by OraclizeAPI's implementation - MIT licence
+        // https://github.com/oraclize/ethereum-api/blob/b42146b063c7d6ee1358846c198246239e9360e8/oraclizeAPI_0.4.25.sol
+
+        if (value == 0) {
+            return "0";
+        }
+        uint256 temp = value;
+        uint256 digits;
+        while (temp != 0) {
+            digits++;
+            temp /= 10;
+        }
+        bytes memory buffer = new bytes(digits);
+        while (value != 0) {
+            digits -= 1;
+            buffer[digits] = bytes1(uint8(48 + uint256(value % 10)));
+            value /= 10;
+        }
+        return string(buffer);
     }
-  }, 500);
-})(`
-// pragma
-pragma solidity >=0.4.25 <0.7;
 
-// import
-import "SomeFile";
-import "SomeFile" as b;
-import * from "SomeFile";
-import * as c from "SomeFile";
-import a as a from "SomeFile";
-import {a} from "someFile";
-import {a as b} from "Somefile";
-import {a, c as b} from "someFile";
+    /**
+     * @dev Converts a uint256 to its ASCII string hexadecimal representation.
+     */
+    function toHexString(uint256 value) internal pure returns (string memory) {
+        if (value == 0) {
+            return "0x00";
+        }
+        uint256 temp = value;
+        uint256 length = 0;
+        while (temp != 0) {
+            length++;
+            temp >>= 8;
+        }
+        return toHexString(value, length);
+    }
 
-contract Metacoin {
-    
-}
-
-enum example {
-    optioN,
-    option2,
+    /**
+     * @dev Converts a uint256 to its ASCII string hexadecimal representation with fixed length.
+     */
+    function toHexString(uint256 value, uint256 length) internal pure returns (string memory) {
+        bytes memory buffer = new bytes(2 * length + 2);
+        buffer[0] = "0";
+        buffer[1] = "x";
+        for (uint256 i = 2 * length + 1; i > 1; --i) {
+            buffer[i] = _HEX_SYMBOLS[value & 0xf];
+            value >>= 4;
+        }
+        require(value == 0, "Strings: hex length insufficient");
+        return string(buffer);
+    }
 }
 `, ``);
-</script>
+      </script>
 
     </main>
   </div>
 </body>
-<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-  
-</script>
 </html>
