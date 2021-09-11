@@ -4,6 +4,7 @@
   "description": "playground for teee-sitter",
   "main": "index.js",
   "scripts": {
+    "setup": "sh setup.sh ",
     "build": "sh build.sh ",
     "prod": "npm run-script build && npm run-script deploy",
     "deploy": "gh-pages -d output"
