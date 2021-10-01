@@ -1,11 +1,12 @@
 {
   "name": "solidity-parser-explorer",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "playground for teee-sitter",
   "main": "index.js",
   "scripts": {
-    "build": "sh build.sh ",
-    "prod": "npm run-script build && npm run-script deploy",
+    "setup": "sh setup.sh ",
+    "generate": "sh generate.sh",
+    "prod": "npm run-script setup && npm run-script generate && npm run-script deploy",
     "deploy": "gh-pages -d output"
   },
   "repository": {
@@ -19,7 +20,11 @@
   },
   "homepage": "https://github.com/sambacha/solidity-parser-explorer#readme",
   "devDependencies": {
-    "gh-pages": "^2.2.0"
+    "gh-pages": "^2.2.0",
+    "tree-sitter": "^0.19.0",
+    "tree-sitter-cli": "^0.20.0",
+    "tree-sitter-solidity": "^1.0.12",
+    "web-tree-sitter": "^0.19.4"
   },
   "browserslist": {
     "production": [

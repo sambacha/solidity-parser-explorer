@@ -5,7 +5,7 @@ BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
 #VERSION=${GITHUB_REF#refs/tags/v}
 
 # check for rust
-cargo --version | exit 1 && echo "cargo not found"
+cargo --version || exit 1 && echo "cargo not found"
 
 
 # make directories
@@ -18,6 +18,7 @@ mv tree-sitter.js assets/js/tree-sitter.js
 
 npm install
 echo "Generating tree-sitter requirements..."
+
 npx tree-sitter-cli generate
 
 echo "Building WASM Solidity Parser..."
@@ -29,4 +30,5 @@ sleep 1
 echo "configure LANGUAGE_BASE_URL for proper resolution"
 bundle exec jekyll build -d output/
 
-exit 0
+npm run-script deploy
+echo "Playground deployed onto gh-pages branch"
