@@ -18,6 +18,7 @@ mv tree-sitter.js assets/js/tree-sitter.js
 
 npm install
 echo "Generating tree-sitter requirements..."
+
 npx tree-sitter-cli generate
 
 echo "Building WASM Solidity Parser..."
