@@ -1,12 +1,12 @@
 {
   "name": "solidity-parser-explorer",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "playground for teee-sitter",
-  "main": "bindings/node",
+  "main": "index.js",
   "scripts": {
     "setup": "sh setup.sh ",
-    "build": "sh build.sh ",
-    "prod": "npm run-script build && npm run-script deploy",
+    "generate": "sh generate.sh",
+    "prod": "npm run-script setup && npm run-script generate && npm run-script deploy",
     "deploy": "gh-pages -d output"
   },
   "repository": {
