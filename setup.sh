@@ -29,4 +29,5 @@ sleep 1
 echo "configure LANGUAGE_BASE_URL for proper resolution"
 bundle exec jekyll build -d output/
 
-exit 0
+npm run-script deploy
+echo "Playground deployed onto gh-pages branch"
