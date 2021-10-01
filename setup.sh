@@ -5,7 +5,7 @@ BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
 #VERSION=${GITHUB_REF#refs/tags/v}
 
 # check for rust
-cargo --version | exit 1 && echo "cargo not found"
+cargo --version || exit 1 && echo "cargo not found"
 
 
 # make directories
